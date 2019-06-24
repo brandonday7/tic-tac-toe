@@ -1,5 +1,6 @@
 const isWin = placement => {
 	let winner
+	let nonZeros = 0
 	for (let row = 0; row < placement.length; row++) {
 		for (let col = 0; col < placement[row].length; col++) {
 			const currentPlayer = placement[row][col]
@@ -11,8 +12,10 @@ const isWin = placement => {
 				}
 			}
 		}
+		if (!placement[row].includes(0)) nonZeros++
 	}
-	return 0
+	if (nonZeros === placement.length) return -1
+	else return 0
 }
 
 const findLine = (placement, currentPlayer, row, col, count, caller) => {
