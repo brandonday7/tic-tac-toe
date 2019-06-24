@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EndGame from "./EndGame"
+import Snack from "./Snack"
 import './App.css';
 import { isWin } from "./utils/utils.js"
 
@@ -22,7 +23,7 @@ class Board extends Component {
 			this.setState({ placement }, () => {
 				let winner = isWin(this.state.placement)
 				if (winner) this.setState({ winner })
-				this.nextTurn()
+				else this.nextTurn()
 			})
 		}
 	} 
@@ -41,7 +42,11 @@ class Board extends Component {
       	{placement.map((row, i) => (
       		<div className="board-row" key={i}>
       			{row.map((snack, j) => (
-      				<p key={j} onClick={() => this.placeSnack(i, j)} >{snack}</p>
+      				<Snack 
+      					key={j} 
+      					onClick={() => this.placeSnack(i, j)} 
+      					player={placement[i][j]}
+      				/>
       			))}
       		</div>
       	))}

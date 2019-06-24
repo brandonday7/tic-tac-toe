@@ -1,3 +1,16 @@
 .board-row {
   display: flex;
 }
+
+.square {
+  width: 20vh;
+  height: 20vh;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.snack-image {
+  width: 16vh;
+}

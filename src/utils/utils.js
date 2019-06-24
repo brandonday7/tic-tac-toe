@@ -43,4 +43,9 @@ const findLine = (placement, currentPlayer, row, col, count, caller) => {
 	}
 }
 
-export { isWin }
+const determineSnack = player => {
+	if (player === 1) return "https://purepng.com/public/uploads/large/pink-creamy-donut-sit.png"
+	else return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHgL_NeQ_N0Vkb9LiLb0ofWDgbVfwmYyXx1Sv8XoGoBTGHyaGP"
+}
+
+export { isWin, determineSnack }
