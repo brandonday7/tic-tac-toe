@@ -1,10 +1,3 @@
-const startingState = {
-	placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-	winner: null,
-	currentPlayer: 1
-}
-
-
 const isWin = placement => {
 	let winner
 	let nonZeros = 0
@@ -69,4 +62,4 @@ const getBorder = (row, col, length) => {
 	return borderString
 }
 
-export { startingState, isWin, determineSnack, getBorder }
+export { isWin, determineSnack, getBorder }

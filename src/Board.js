@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EndGame from "./EndGame"
 import Snack from "./Snack"
 import './App.css';
-import { isWin, startingState, getBorder } from "./utils/utils.js"
+import { isWin, getBorder } from "./utils/utils.js"
 
 class Board extends Component {
 	constructor(props) {
@@ -32,7 +32,8 @@ class Board extends Component {
 		this.setState({ 
 			placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], 
 			winner: null,
-			currentPlayer: 1 })
+			currentPlayer: 1 
+		})
 	}
 
   render() {
