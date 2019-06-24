@@ -6,10 +6,7 @@ const isWin = placement => {
 			const currentPlayer = placement[row][col]
 			if (currentPlayer) {
 				winner = findLine(placement, currentPlayer, row, col, 0)
-				if (winner) {
-					console.log("winner!", winner)
-					return winner
-				}
+				if (winner) return winner
 			}
 		}
 		// keep a tally of filled in rows to determine a draw
@@ -21,32 +18,32 @@ const isWin = placement => {
 }
 
 const findLine = (placement, currentPlayer, row, col, count, caller) => {
+	/* findLine method:
+		as long as there is room to move in the matrix, 
+		look to the right, below, or diagonal of the current sqaure for a match.
+		if there is a match, call findLine again with an incremented counter,
+		heading in the same direction that sent you
+		(i.e. keep going right, down, or diagonally -> changes in direction are irrelevant)
+		once the counter reaches the winning number (index 2 in a 3x3), return winning player
+	*/
 	if (count === placement.length - 1) {
-		console.log('thats a win')
 		return currentPlayer
 	} else {	
-		if (col < placement[row].length - 1 && placement[row][col + 1] === currentPlayer) {
-			console.log("to the right")
-			if (caller !== "r") count = 0
-			return findLine(placement, currentPlayer, row, col + 1, count + 1, "r")
+		if (row < placement.length - 1 && col < placement.length - 1 && placement[row + 1][col + 1] === currentPlayer) {
+			if ((!row && !col) || caller === "dr") return findLine(placement, currentPlayer, row + 1, col + 1, count + 1, "dr")
+		} 
+		if (col < placement.length - 1 && placement[row][col + 1] === currentPlayer) {
+			if (!col || caller === "r") return findLine(placement, currentPlayer, row, col + 1, count + 1, "r")
 		} 
 		if (row < placement.length - 1 && placement[row + 1][col] === currentPlayer) {
-			console.log("below")
-			if (caller !== "b") count = 0
-			return findLine(placement, currentPlayer, row + 1, col, count + 1, "b")
-		} 
-		if (row < placement.length - 1 && col < placement[row].length - 1 && placement[row + 1][col + 1] === currentPlayer) {
-			console.log("diagonal right")
-			if (caller !== "dr") count = 0
-			return findLine(placement, currentPlayer, row + 1, col + 1, count + 1, "dr")
+			if (!row || caller === "b") return findLine(placement, currentPlayer, row + 1, col, count + 1, "b")
 		} 
 		if (col > 0 && row < placement.length - 1 && placement[row + 1][col - 1] === currentPlayer) {
-			console.log("diagonal left")
-			if (caller !== "dl") count = 0
-			return findLine(placement, currentPlayer, row + 1, col - 1, count + 1, "dl")
+			if ((!row && col === placement.length - 1) || caller === "dl") return findLine(placement, currentPlayer, row + 1, col - 1, count + 1, "dl")
 		}
 	}
 }
+
 
 const determineSnack = player => {
 	if (player === 1) return "https://purepng.com/public/uploads/large/pink-creamy-donut-sit.png"
