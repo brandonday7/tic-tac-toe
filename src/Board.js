@@ -8,18 +8,21 @@ class Board extends Component {
 		super(props)
 		this.state = {
 			placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
-			winner: null
+			winner: null,
+			currentPlayer: 1
 		}
 	}
 
+  nextTurn = () => this.setState({ currentPlayer: this.state.currentPlayer === 1 ? 2 : 1 })
+
 	placeSnack = (i, j) => {
-		const { placement, winner } = this.state
+		const { placement, winner, currentPlayer } = this.state
 		if (!placement[i][j] && !winner) {
-			placement[i][j] = this.props.currentPlayer
+			placement[i][j] = currentPlayer
 			this.setState({ placement }, () => {
 				let winner = isWin(this.state.placement)
 				if (winner) this.setState({ winner })
-				this.props.nextTurn()
+				this.nextTurn()
 			})
 		}
 	} 
@@ -27,13 +30,12 @@ class Board extends Component {
 	reset = () => {
 		this.setState({ 
 			placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], 
-			winner: null }, 
-		this.props.startTurn)
+			winner: null,
+			currentPlayer: 1 })
 	}
 
   render() {
-  	const { placement, winner } = this.state
-  	const { currentPlayer } = this.props
+  	const { placement, winner, currentPlayer } = this.state
     return (
       <div>
       	{placement.map((row, i) => (
