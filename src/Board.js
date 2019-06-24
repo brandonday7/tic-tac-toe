@@ -13,8 +13,8 @@ class Board extends Component {
 	}
 
 	placeSnack = (i, j) => {
-		const { placement } = this.state
-		if (!placement[i][j]) {
+		const { placement, winner } = this.state
+		if (!placement[i][j] && !winner) {
 			placement[i][j] = this.props.currentPlayer
 			this.setState({ placement }, () => {
 				let winner = isWin(this.state.placement)
@@ -25,7 +25,10 @@ class Board extends Component {
 	} 
 
 	reset = () => {
-		this.setState({ placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], winner: null }, this.props.startTurn)
+		this.setState({ 
+			placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], 
+			winner: null }, 
+		this.props.startTurn)
 	}
 
   render() {
