@@ -3,8 +3,8 @@ import Board from "./Board.js"
 import './App.css';
 
 const App = () => (
-  <div>
-    <h2>Tic Tac Toe</h2>
+  <div className="game-container">
+    <h1 className="title">Tic Tac Toe</h1>
     <Board />
   </div>
 )

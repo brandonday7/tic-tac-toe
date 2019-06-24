@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EndGame from "./EndGame"
 import Snack from "./Snack"
 import './App.css';
-import { isWin } from "./utils/utils.js"
+import { isWin, startingState, getBorder } from "./utils/utils.js"
 
 class Board extends Component {
 	constructor(props) {
@@ -46,6 +46,7 @@ class Board extends Component {
       					key={j} 
       					onClick={() => this.placeSnack(i, j)} 
       					player={placement[i][j]}
+      					border={getBorder(i, j, placement.length)}
       				/>
       			))}
       		</div>

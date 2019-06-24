@@ -1,3 +1,7 @@
+.game-container {
+  margin: 1em;
+}
+
 .board-row {
   display: flex;
 }
@@ -9,6 +13,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.top-square {
+  border-top: 0;
+}
+
+.right-square {
+  border-right: 0;
+}
+
+.left-square {
+  border-left: 0;
+}
+
+.bottom-square {
+  border-bottom: 0;
 }
 
 .snack-image {

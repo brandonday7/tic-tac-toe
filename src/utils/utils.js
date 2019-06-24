@@ -1,3 +1,10 @@
+const startingState = {
+	placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+	winner: null,
+	currentPlayer: 1
+}
+
+
 const isWin = placement => {
 	let winner
 	let nonZeros = 0
@@ -12,8 +19,10 @@ const isWin = placement => {
 				}
 			}
 		}
+		// keep a tally of filled in rows to determine a draw
 		if (!placement[row].includes(0)) nonZeros++
 	}
+  // -1 is a draw, 0 is an unfinished match
 	if (nonZeros === placement.length) return -1
 	else return 0
 }
@@ -51,4 +60,13 @@ const determineSnack = player => {
 	else return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHgL_NeQ_N0Vkb9LiLb0ofWDgbVfwmYyXx1Sv8XoGoBTGHyaGP"
 }
 
-export { isWin, determineSnack }
+const getBorder = (row, col, length) => {
+	let borderString = ""
+	if (row === 0) borderString = "top-square"
+	else if (row === length - 1) borderString = "bottom-square"
+	if (col === 0) borderString += " left-square"
+	else if (col === length - 1) borderString += " right-square"
+	return borderString
+}
+
+export { startingState, isWin, determineSnack, getBorder }
