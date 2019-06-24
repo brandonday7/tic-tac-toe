@@ -11,13 +11,18 @@ class App extends Component {
   }
 
   nextTurn = () => this.setState({ currentPlayer: this.state.currentPlayer === 1 ? 2 : 1 })
+  startTurn = () => this.setState({ currentPlayer: 1 })
 
   render() {
     const { currentPlayer } = this.state
     return (
       <div>
         <h2>Tic Tac Toe</h2>
-        <Board nextTurn={this.nextTurn} currentPlayer={currentPlayer}/>
+        <Board 
+          nextTurn={this.nextTurn} 
+          startTurn={this.startTurn}
+          currentPlayer={currentPlayer}
+        />
       </div>
     );
 
