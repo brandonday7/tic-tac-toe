@@ -6,18 +6,27 @@ class Board extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			placement: [[1, 1, 1], [0, 0, 0], [0, 0, 1]]
+			placement: [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
 		}
 	}
 
+	placeSnack = (i, j) => {
+		const { placement } = this.state
+		if (!placement[i][j]) {
+			placement[i][j] = this.props.currentPlayer
+			this.setState({ placement }, this.props.nextTurn)
+		}
+	} 
+
   render() {
   	const { placement } = this.state
+  	const { nextTurn } = this.props
     return (
       <div>
       	{placement.map((row, i) => (
       		<div className="board-row" key={i}>
       			{row.map((snack, j) => (
-      				<p key={j}>{snack}</p>
+      				<p key={j} onClick={() => this.placeSnack(i, j)} >{snack}</p>
       			))}
       		</div>
       	))}
