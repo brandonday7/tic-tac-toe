@@ -43,8 +43,19 @@
   border-bottom: 0;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .snack-image {
   width: 16vh;
+  animation: fadeIn 0.3s;
 }
 
 .end-game-container {
