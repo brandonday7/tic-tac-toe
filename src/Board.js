@@ -38,20 +38,22 @@ class Board extends Component {
   render() {
   	const { placement, winner, currentPlayer } = this.state
     return (
-      <div>
-      	{placement.map((row, i) => (
-      		<div className="board-row" key={i}>
-      			{row.map((snack, j) => (
-      				<Snack 
-      					key={j} 
-      					onClick={() => this.placeSnack(i, j)} 
-      					player={placement[i][j]}
-      					border={getBorder(i, j, placement.length)}
-      				/>
-      			))}
-      		</div>
-      	))}
-      	{winner ? <EndGame winner={winner} reset={this.reset}/> : <p>Player {currentPlayer}'s turn</p>}
+    	<div className="board-container">
+	      <div>
+	      	{placement.map((row, i) => (
+	      		<div className="board-row" key={i}>
+	      			{row.map((snack, j) => (
+	      				<Snack 
+	      					key={j} 
+	      					onClick={() => this.placeSnack(i, j)} 
+	      					player={placement[i][j]}
+	      					border={getBorder(i, j, placement.length)}
+	      				/>
+	      			))}
+	      		</div>
+	      	))}
+	      </div>
+      	{winner ? <EndGame winner={winner} reset={this.reset}/> : <h3>Player {currentPlayer}'s turn</h3>}
       </div>
     );
 

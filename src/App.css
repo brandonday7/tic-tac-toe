@@ -1,5 +1,17 @@
 .game-container {
-  margin: 1em;
+  margin: 2em;
+}
+
+.title {
+  font-size: 300%;
+}
+
+.board-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .board-row {
@@ -33,4 +45,26 @@
 
 .snack-image {
   width: 16vh;
+}
+
+.end-game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button {
+  border: 2px solid black;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
 }
